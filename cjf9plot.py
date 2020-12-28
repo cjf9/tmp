@@ -1,5 +1,5 @@
 ## cjf9plot
-## 一个类似于Gnuplot的画图软, 输入helpme显示全部命令.
+## 一个类似于Gnuplot的画图软, 输入help显示全部命令.
 ## 需要matplotlib, math
 
 

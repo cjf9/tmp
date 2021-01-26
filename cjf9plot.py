@@ -22,7 +22,7 @@ def help():
     print("1 查看全部命令： help")
     print("2 画出f(x)的图像： plot <f(x)> ")
     print("3 重画上一次命令画的图： replot ")
-    print("4 设置采样点： set samples <start stop setp> ")
+    print("4 设置采样点： set samples <start stop step> ")
     print("5 定义函数： f(x) = <具体的表达式> 靠这个忘了实现了。。。")
     print("6 还要定义将多个函数画在一个图里的。plot <f(x) g(x) ...>")
 
@@ -52,20 +52,20 @@ def parse_cmd(str_cmd):
     '''将用户输入的命令进行解析，以元组返回该做什么的信号，以及分离出来的、下一步操作将用到的参数'''
     cmd_1 = str_cmd.split(" ")[0]   # cmd_1为str_cmd的第一个单词，用来识别这个命令想做什么
     if cmd_1 == "replot":
-        return (":replot", "为了返回tuple而加的占位符")
+        return (":replot",)
     elif cmd_1 == "plot":
         return (":toplot", str_cmd.replace("plot", " "))
     elif cmd_1 == "set":     # 将来如果出了set samples以外的set xxx命令， 这里记得修改。。。可以考虑用抽象类改写。哎。
          return (tuple(str_cmd.replace("set samples", ":set_samples").split(" ")))        
     elif cmd_1 == "help":
-        return (":help", "占位字符")
+        return (":help",)
     else:
-        return (":done", "占位字符")
+        return (":done", )
 
 
 
 def main_loop():
-  while True:
+    while True:
         str_cmd = input("\ncjf9plot>>> ")
         tuple_signal = parse_cmd(str_cmd)
         if tuple_signal[0] == ":replot":
